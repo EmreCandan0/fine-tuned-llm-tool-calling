@@ -35,14 +35,25 @@ A modular AI system for LLM-driven tool calling and natural language reasoning�
 
 ## 🔄 Workflow
 
-'''mermaid
-graph LR
-A[User Input] --> B[Fine-tuned LLM (Tool Call JSON)]
-B --> C[MCP Server (File/Geo Processing)]
-C --> D[Raw JSON Output]
-D --> E[LangChain LLM (Verbalization)]
-E --> F[Human-Readable Response]
-<details> <summary>Workflow steps (if mermaid is not supported):</summary>
+User Input
+   │
+   ▼
+Fine-tuned LLM (Tool Call JSON)
+   │
+   ▼
+MCP Server (File/Geo Processing)
+   │
+   ▼
+Raw JSON Output
+   │
+   ▼
+LangChain LLM (Verbalization)
+   │
+   ▼
+Human-Readable Response
+
+<details> <summary>Workflow steps (plain English):</summary>
+  
 User input → Fine-tuned LLM generates tool-call JSON.
 
 JSON is executed on the MCP Server (e.g., file analysis, cropping, NDVI calculation).
@@ -55,6 +66,7 @@ Result is delivered as clear, actionable feedback.
 
 ---
 ✨ Core Features
+
 Out-of-the-box support for GeoTIFF, image analysis, and spatial data tools.
 
 Easily extendable for any MCP-supported function/tool.
@@ -65,7 +77,9 @@ Scalable, modular, and fully open-source.
 
 ---
 🧰 Module Features
+
 finetuning.ipynb
+
 Loads and prepares a Qwen2.5 model using Unsloth.
 
 Converts JSON-based tool-calling datasets into ShareGPT format.
@@ -80,6 +94,7 @@ Demonstrates how to export and test the model with ShareGPT-style input.
 
 -----
 mcp_server.py
+
 Loads as a FastMCP agent for geospatial tool-calling.
 
 Analyzes TIFF/JP2 files, returns bounding box, bands, EPSG, etc.
@@ -94,6 +109,7 @@ Cleans up temporary directories on exit.
 
 ---
 api.py
+
 REST API for LLM-powered tool-calling with natural language output.
 
 Loads a fine-tuned LLM for parsing prompts & function calls.
@@ -106,6 +122,7 @@ Returns both technical and human-friendly results.
 
 ---
 prompter.py
+
 Simple command-line interface for interacting with your LLM+MCP backend.
 
 Sends user prompts to the /generate endpoint.
@@ -134,11 +151,17 @@ python prompter.py
 📝 Example Inputs & Outputs
 
 Tool-calling Dataset Format
+
 {
+
   "messages": [
+  
     {"role": "user", "content": "Your instruction..."},
+    
     {"role": "assistant", "content": "TOOL_NEEDED: ...\nPARAMS: {...}"}
+    
   ]
+  
 }
 
 
@@ -147,14 +170,23 @@ API Example Output
 {
 
   "output": "TOOL_NEEDED: analyze_tiff\nPARAMS: {\"filepath\": \"C:/Users/emre/Desktop/abc.tif\"}",
+  
   "tools": [
+  
     {
+    
       "tool_name": "analyze_tiff",
+      
       "params": {"filepath": "C:/Users/emre/Desktop/abc.tif"},
+      
       "tool_result": {"message": "JP2 analyzed successfully.", "...": "..."},
+      
       "human_result": "This file contains a 3-band RGB GeoTIFF..."
+      
     }
+    
   ]
+  
 }
 
 
