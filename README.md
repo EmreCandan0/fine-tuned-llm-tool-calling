@@ -25,7 +25,7 @@ A modular AI system for LLM-driven tool calling and natural language reasoning�
 
 ---
 
-##overview 🧩 Overview
+🧩 Overview
 
 - **Fine-tuned LLM** (optimized for tool-calling) interprets user requests and interacts with an MCP (Model Context Protocol) Server for geospatial or file-based operations.
 - **Second LLM** (via LangChain) transforms raw JSON/technical responses into clear, human-friendly language.
@@ -33,7 +33,7 @@ A modular AI system for LLM-driven tool calling and natural language reasoning�
 
 ---
 
-# 🔄 Workflow
+🔄 Workflow
 
 User Input
    │
