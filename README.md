@@ -26,7 +26,7 @@ A modular AI system for LLM-driven tool calling and natural language reasoning�
 ---
 
 🧩 Overview
-
+---
 - **Fine-tuned LLM** (optimized for tool-calling) interprets user requests and interacts with an MCP (Model Context Protocol) Server for geospatial or file-based operations.
 - **Second LLM** (via LangChain) transforms raw JSON/technical responses into clear, human-friendly language.
 - **Easily extensible** to any backend tools or APIs via MCP.
@@ -34,23 +34,13 @@ A modular AI system for LLM-driven tool calling and natural language reasoning�
 ---
 
 🔄 Workflow
-
-User Input
-   │
-   ▼
-Fine-tuned LLM (Tool Call JSON)
-   │
-   ▼
-MCP Server (File/Geo Processing)
-   │
-   ▼
-Raw JSON Output
-   │
-   ▼
-LangChain LLM (Verbalization)
-   │
-   ▼
-Human-Readable Response
+---
+User Input->
+ Fine-tuned LLM (Tool Call JSON)->
+ MCP Server (File/Geo Processing)->
+ Raw JSON Output->
+ LangChain LLM (Verbalization)-> 
+ Human-Readable Response
 
 <details> <summary>Workflow steps (plain English):</summary>
   
@@ -66,7 +56,7 @@ Result is delivered as clear, actionable feedback.
 
 ---
 ✨ Core Features
-
+---
 Out-of-the-box support for GeoTIFF, image analysis, and spatial data tools.
 
 Easily extendable for any MCP-supported function/tool.
@@ -77,8 +67,9 @@ Scalable, modular, and fully open-source.
 
 ---
 🧰 Module Features
-
+---
 finetuning.ipynb
+
 
 Loads and prepares a Qwen2.5 model using Unsloth.
 
@@ -95,6 +86,7 @@ Demonstrates how to export and test the model with ShareGPT-style input.
 -----
 mcp_server.py
 
+
 Loads as a FastMCP agent for geospatial tool-calling.
 
 Analyzes TIFF/JP2 files, returns bounding box, bands, EPSG, etc.
@@ -110,6 +102,7 @@ Cleans up temporary directories on exit.
 ---
 api.py
 
+
 REST API for LLM-powered tool-calling with natural language output.
 
 Loads a fine-tuned LLM for parsing prompts & function calls.
@@ -123,6 +116,7 @@ Returns both technical and human-friendly results.
 ---
 prompter.py
 
+
 Simple command-line interface for interacting with your LLM+MCP backend.
 
 Sends user prompts to the /generate endpoint.
@@ -131,7 +125,7 @@ Automatically parses and prints both human-readable and technical outputs.
 
 ---
 ⚡ Quick Start
-
+---
 Run the backend MCP server:
 
 python mcp_server.py
@@ -149,7 +143,7 @@ python prompter.py
 
 ---
 📝 Example Inputs & Outputs
-
+---
 Tool-calling Dataset Format
 
 {
@@ -192,7 +186,7 @@ API Example Output
 
 ---
 📁 File Overview
-
+---
 finetuning.ipynb — Main notebook (all code cells & comments)
 
 toolcalling_dataset.jsonl — Example dataset (/content/toolcalling_dataset.jsonl)
@@ -204,3 +198,60 @@ mcp_server.py — FastMCP agent for geospatial tool endpoints
 api.py — REST API for LLM+MCP tool-calling
 
 prompter.py — CLI for prompt-testing
+
+
+---
+Screenshots
+----
+
+
+Running Servers:
+
+api.py
+
+<img width="1229" height="345" alt="image" src="https://github.com/user-attachments/assets/24b3cd88-ac4f-42ed-a66a-3f84e79966e9" />
+
+
+mcp_server.py
+
+<img width="1194" height="346" alt="image" src="https://github.com/user-attachments/assets/25c17e84-dde5-42d8-8d1b-0b8a423ff6d7" />
+
+
+
+---
+Prompt and Tool Call:
+
+
+prompter.py
+
+<img width="1802" height="45" alt="image" src="https://github.com/user-attachments/assets/c1782772-531b-4a13-b05f-5096d35e6f48" />
+
+
+
+
+api.py
+
+<img width="1705" height="344" alt="image" src="https://github.com/user-attachments/assets/c69e4b2f-eea0-406e-8f27-350651ba1eaa" />
+
+
+
+
+
+mcp_server.py
+
+<img width="781" height="339" alt="image" src="https://github.com/user-attachments/assets/0d9f68aa-a697-4c68-990f-e0bdfd9ffc9a" />
+
+
+
+
+prompter.py
+
+<img width="1477" height="117" alt="image" src="https://github.com/user-attachments/assets/51421ca0-0d9e-48a6-8201-62905751ff26" />
+
+
+
+
+
+
+
+
